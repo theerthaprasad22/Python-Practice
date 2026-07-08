@@ -74,3 +74,91 @@ class student(person):
 s1=student("ccg",18,33,87)
 s1.display_person()
 s1.display_student()
+
+##Multiple Inheritance
+##inheriting from more than one parent
+class Camera:
+
+    def click(self):
+        print("Taking Photo")
+
+
+class MusicPlayer:
+
+    def play(self):
+        print("Playing Music")
+
+
+class Phone(Camera, MusicPlayer):
+    pass
+
+
+p = Phone()
+
+p.click()
+
+p.play()
+
+##If both parent class have method with same name the parent which is in left executes
+#Because Python checks the parents from left to right.
+
+
+##MRO-Method Resolution Order is the order in which Python searches classes to find a method or attribute.
+
+#Diamond Probelm
+class A:
+
+    def show(self):
+        print("A")
+
+
+class B(A):
+
+    def show(self):
+        print("B")
+
+
+class C(A):
+
+    def show(self):
+        print("C")
+
+
+class D(B, C):
+    pass
+
+
+d = D()
+
+d.show()
+#Here when the show method  is called using the object d of the class d Class b is inherited because python goes from left to right
+
+
+#super() does not call the immediate parent class. It calls the next class in the Method Resolution Order (MRO).
+class A:
+
+    def show(self):
+        print("A")
+
+
+class B(A):
+
+    def show(self):
+        print("B")
+        super().show()
+
+
+class C(A):
+
+    def show(self):
+        print("C")
+        super().show()
+
+
+class D(B, C):
+    pass
+
+d = D()
+d.show()
+
+#Here first the B is executed then with super keyword it will follow the mro ,it will not go to the parent class so next c will execute then A will
